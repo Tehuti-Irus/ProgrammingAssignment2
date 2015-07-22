@@ -7,10 +7,12 @@
 
 makeCacheMatrix <- function(x = matrix()) {
 
-  cmat <- NULL
+  cmat <- NULL ## cmat stores cached inverse matrix
   set <- function(y) {
     x <<- y
-    m <<- NULL}
+    cmat <<- NULL}
+  
+  get <- function()x
   
   ## getinverse() returns the inverse from cache
   getinverse <- function() cmat
@@ -20,6 +22,10 @@ makeCacheMatrix <- function(x = matrix()) {
   {
    cmat <- m
   }
+  
+  list(set = set, get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
  
   
 }
@@ -49,3 +55,4 @@ cacheSolve <- function(x, ...) {
   
   
 }
+
